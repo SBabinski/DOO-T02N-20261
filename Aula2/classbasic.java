@@ -1,4 +1,3 @@
-package projeto;
 import java.util.Scanner;
 public class classbasic {
     public static void main (String [] agrs ) {
