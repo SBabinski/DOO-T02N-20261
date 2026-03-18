@@ -12,6 +12,7 @@ public class Principal {
 	static ArrayList<Venda> vendas = new ArrayList<>();
 
 	public static void main(String[] args) {
+		
 		populaLista();
 
 		System.out.println("Bem vindo(a)!!");
