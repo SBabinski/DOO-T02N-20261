@@ -1,7 +1,7 @@
-import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class CalculadoraGabrielinha {
     public static void main(String[] args) {
@@ -26,6 +26,8 @@ public class CalculadoraGabrielinha {
             System.out.println("6 - VER VENDA POR DATA");
             
             escolha = entrada.nextInt();  
+            entrada.nextLine(); 
+
         if (escolha == 1) {
              System.out.print("QUANTIDADE =");   
                 int qtd = entrada.nextInt();
@@ -68,8 +70,6 @@ public class CalculadoraGabrielinha {
                 break;
 
             } else if (escolha == 5) {
-             entrada.nextLine();
-
              System.out.print("DIGITE A DATA (dd/MM/yyyy): ");
              String data = entrada.nextLine();
 
@@ -92,8 +92,6 @@ public class CalculadoraGabrielinha {
              }
 
             } else if (escolha == 6) {
-             entrada.nextLine();
-
              System.out.print("DIGITE A DATA (dd/MM/yyyy): ");
              String data = entrada.nextLine();
 
