@@ -80,7 +80,7 @@ public class CalculadoraGabrielinha {
                 LocalDate dataFormatada = LocalDate.parse(data, formato);
                 String chave = dataFormatada.format(formato);
 
-                if (vendasPorData.containsKey(chave)) {
+             if (vendasPorData.containsKey(chave)) {
                     vendasPorData.put(chave, vendasPorData.get(chave) + qtd);
                 } else {
                     vendasPorData.put(chave, qtd);
@@ -89,6 +89,7 @@ public class CalculadoraGabrielinha {
              System.out.println("SALVO!");
              } catch (Exception e) {
              System.out.println("DATA ERRADA");
+   
              }
 
             } else if (escolha == 6) {
@@ -99,14 +100,14 @@ public class CalculadoraGabrielinha {
                 LocalDate dataFormatada = LocalDate.parse(data, formato);
                 String chave = dataFormatada.format(formato);
 
-                if (vendasPorData.containsKey(chave)) {
+             if (vendasPorData.containsKey(chave)) {
                     System.out.println("VENDAS: " + vendasPorData.get(chave));
                 } else {
              System.out.println("NENHUMA VENDA NESSE DIA");
                 }
 
              } catch (Exception e) {
-             System.out.println("DATA ERRADA");
+             System.out.println("DATA ERRADA"); 
              }
              
 
