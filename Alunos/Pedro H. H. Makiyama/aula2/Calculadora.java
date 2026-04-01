@@ -1,10 +1,12 @@
+package aula2;
+
 import java.util.Scanner;
 
 public class Calculadora {
 
     Scanner scan = new Scanner(System.in);
 
-    public void Interface(){
+    public void calcInterface(){
         
         int opcao;
         double total, troco;

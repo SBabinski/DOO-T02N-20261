@@ -14,6 +14,10 @@ public class Venda {
         this.data = data;
     }
 
+    public Venda(int quant2, double precoTot) {
+        //TODO Auto-generated constructor stub
+    }
+
     public LocalDate getData(){
         return data;
     }
