@@ -47,15 +47,14 @@ public class MediaNotas {
         scanner.close();
     }
 }
-Neste exemplo, o programa segue uma sequência bem definida de ações:
-
-- Solicita os valores ao usuário.
-- Guarda as notas em variáveis.
-- Calcula a média aritmética.
-- Mostra o resultado na tela.
-
-- Nesse caso, o fluxo de execução é controlado explicitamente pelo programador, que determina cada etapa que deve acontecer.
-
+````
+- Neste exemplo, o programa segue uma sequência bem definida de ações:
+  - Solicita os valores ao usuário.
+  - Guarda as notas em variáveis.
+  - Calcula a média aritmética.
+  - Mostra o resultado na tela.
+  - Nesse caso, o fluxo de execução é controlado explicitamente pelo programador, que determina cada etapa que deve acontecer.
+```Prolog
 media :-
     write('Digite a primeira nota: '),
     read(N1),
@@ -63,14 +62,12 @@ media :-
     read(N2),
     M is (N1 + N2) / 2,
     write('A media e: '), write(M), nl.
-
-    Em Prolog, o programa é expresso por meio de uma regra chamada media, que estabelece as ações e relações necessárias para obter o resultado:
-
-- Recebe os valores informados pelo usuário.
-- Define a média por meio de uma relação matemática.
-- Exibe o valor calculado.
-
-- Mesmo apresentando uma ordem de execução, a lógica em Prolog continua mais voltada à descrição da solução do que ao controle minucioso do fluxo, como ocorre em Java.
+````
+- Em Prolog, o programa é expresso por meio de uma regra chamada media, que estabelece as ações e relações necessárias para obter o resultado:
+  - Recebe os valores informados pelo usuário.
+  - Define a média por meio de uma relação matemática.
+  - Exibe o valor calculado.
+  - Mesmo apresentando uma ordem de execução, a lógica em Prolog continua mais voltada à descrição da solução do que ao controle minucioso do fluxo, como ocorre       em Java.
 
 ## Conclusão
 
