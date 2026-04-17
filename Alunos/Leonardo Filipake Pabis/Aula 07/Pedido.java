@@ -13,7 +13,7 @@ public class Pedido {
     private Lojas loja;
     public ArrayList<Item> itens = new ArrayList<>();
     public HashMap<Item, Integer> quantidadeDosItens = new HashMap<>();
-    public Double totalCompra;
+    public Double totalCompra = 0.0;
 
     public Pedido(){
 
@@ -88,6 +88,7 @@ public class Pedido {
                 }
                 else if (escolha == 2){
                     this.dataPagamento = Date.dataAtualDate();
+                    System.out.println("Pago agora");
                     break;
                 }else {
                     System.out.println("Digite uma opcão válida:");
@@ -149,39 +150,34 @@ public class Pedido {
 
 
     public void setTotalCompra(double valor){
-        totalCompra = valor;
+        totalCompra += valor;
     }
 
-    public void getValorTotal(){
-        double soma = 0;
-        for (int i = 0; i < itens.size(); i++){
-            double valor = itens.get(i).getValor();
-            Integer quantidade = quantidadeDosItens.get(itens.get(i));
-            soma = soma + (valor * quantidade);
-        }
-        setTotalCompra(soma);
+    public double getValorTotal(){
+        return this.totalCompra;
     }
 
     public double calcularValorTotal() {
         double soma = 0;
         for (int i = 0; i < itens.size(); i++) {
             int quantidadeItem = quantidadeDosItens.getOrDefault(itens.get(i), 0);
-            soma = soma + (itens.get(i).getValor() * quantidadeItem);
+            Double valorItem = itens.get(i).getValor();
+            if (quantidadeItem > 10){
+                valorItem *= 0.95;
+            }
+            soma = soma + (valorItem * quantidadeItem);
         }
         return soma;
     }
 
     public String gerarDescricaoVenda() {
-        return String.format("Id do pedido: " + id + " | Criação: " + getDataCriacaoString() + " | Total: " + calcularValorTotal());
+        return String.format("Id do pedido: " + id + " | Criação: " + getDataCriacaoString() + " | Total: " + getValorTotal());
     }
 
     public Double getTotalCompra() {
         return totalCompra;
     }
 
-    public void setTotalCompra(Double totalCompra) {
-        this.totalCompra = totalCompra;
-    }
 
 
     

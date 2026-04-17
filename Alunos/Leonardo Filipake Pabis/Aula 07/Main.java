@@ -1,4 +1,5 @@
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -40,13 +41,25 @@ public class Main {
         System.out.println(vend2.calcularMediaSalarial());
         System.out.println(vend2.calcularBonusSalarial());
         loja1.vendedores.add(vend2);
+
+        Vendedor vend3 = new Vendedor("Pietro", 36, loja1, 1600.0, "Cidade abcd", "bairro efg", "rua hij");
+        loja1.vendedores.add(vend3);
+
+        Vendedor vend4 = new Vendedor("Felipe", 58, loja2, 1800.0, "cidade pon", "bairro cavalo", "rua pony");
+        loja2.vendedores.add(vend4);
         
         Clientes cliente10 = new Clientes("Eduardo", 30, "NY", "bairro country", "rua da lapa");
 
         Clientes cliente20 = new Clientes("Jemer", 45, "Fortaleza", "bairro cinema", "rua abelha");
 
+        Clientes cliente30 = new Clientes("maria", 60, "cidade cidade", "bairro bairro", "rua rua");
+
+        Clientes cliente40 = new Clientes("joao", 70, "cidade cida", "bairro bai", "rua ru");
+
         loja1.clientes.add(cliente20);
         loja2.clientes.add(cliente10);
+        loja2.clientes.add(cliente30);
+        loja1.clientes.add(cliente40);
         
         lojas.add(loja1);
         lojas.add(loja2);
@@ -62,6 +75,7 @@ public class Main {
         gerente1.apresentarse();
         System.out.println(gerente1.calcularMediaSalarial());
         System.out.println(gerente1.calcularBonusSalarial());
+        loja2.setGerente(gerente1);
 
         Gerente gerente2 = new Gerente("Gerentão", 70, loja1, 5000.0, "cidade pequena", "bairro pequeno", "rua pequena");
         gerente2.receberSalario(5000);
@@ -70,14 +84,17 @@ public class Main {
         gerente2.apresentarse();
         System.out.println(gerente2.calcularMediaSalarial());
         System.out.println(gerente2.calcularBonusSalarial());
+        loja1.setGerente(gerente2);
 
         Item item1 = new Item(1, "Rosácea", "flor rosa", 10.0);
         Item item2 = new Item(10, "Girassol", "flor amarela", 25.0);
+        Item item3 = new Item(20, "Flor grande", "grande flor", 50.0);
 
         System.out.println(item1.gerarDescicao());
         System.out.println(item2.gerarDescicao());
         itensLoja.add(item1);
         itensLoja.add(item2);
+        itensLoja.add(item3);
         
         Pedido pedido5 = ProcessaPedido.processar(5, cliente10, vend2, loja1, "12/12/2026");
         pedido5.setDataVencimentoReserva("12/12/2026");
@@ -103,8 +120,8 @@ public class Main {
         System.out.println("********");
         System.out.println("1 - Criar pedido");
         System.out.println("2 - Cálculo de troco");
-        System.out.println("3 - Consultar vendas");
-        System.out.println("4 - Alocar vendas totais");
+        System.out.println("3 - Consultar vendas (outdated)");
+        System.out.println("4 - Alocar vendas totais (outdated)");
         System.out.println("5 - Buscar vendas do dia");
         System.out.println("6 - Listar dados (loja, vendedores e clientes)");
         System.out.println("7 - Listar pedidos");
@@ -139,37 +156,61 @@ public class Main {
     public static void criarPedido(){
         int id = (pedidosTotais.size()+1);
 
-        System.out.println("Escolha a loja:(só opcao 1 funciona)");
+        System.out.println("Escolha a loja:");
         Lojas loja = null;
         for (int i = 0; i < lojas.size(); i++){
             System.out.println((i+1)+" - " + lojas.get(i).getNomeFantasia());
         }
-        int escolhaLoja = scan.nextInt();
-        scan.nextLine();
-        if (escolhaLoja == 1){
-            loja = lojas.get((escolhaLoja-1));
+        while (loja == null) { 
+            int escolhaLoja = scan.nextInt();
+            scan.nextLine();
+            for (int i = 0; i < lojas.size(); i++){
+                if ((escolhaLoja-1) == i){
+                    loja = lojas.get(i);
+                }
+            }
+            if (loja == null){
+                System.out.println("Digite uma opção válida: ");
+            }
         }
+        
+        
+        
 
-        System.out.println("Escolha o vendedor da loja: (só opcao 1 funciona)");
+        System.out.println("Escolha o vendedor da loja: ");
         for (int i = 0; i < loja.vendedores.size(); i++){
             System.out.println((i+1)+" - "+loja.vendedores.get(i).getNome());
         }
-        int escolhaVendedor = scan.nextInt();
-        scan.nextLine();
         Vendedor vendedor = null;
-        if (escolhaVendedor == 1){
-            vendedor = loja.vendedores.get((escolhaVendedor-1));
+        while (vendedor == null) { 
+            int escolhaVendedor = scan.nextInt();
+            scan.nextLine();
+            for (int i = 0; i < loja.vendedores.size(); i++){
+                if ((escolhaVendedor-1) == i){
+                    vendedor = loja.vendedores.get(i);
+                }
+            }
+            if (vendedor == null){
+                System.out.println("Digite uma opção válida: ");
+            }
         }
 
-        System.out.println("Escolha o cliente da loja: (só opcao 1 funciona)");
+        System.out.println("Escolha o cliente da loja: ");
         for (int i = 0; i < loja.clientes.size(); i++){
             System.out.println((i+1)+" - "+loja.clientes.get(i).getNome());
         }
-        int escolhaCliente = scan.nextInt();
-        scan.nextLine();
         Clientes cliente = null;
-        if (escolhaCliente == 1){
-            cliente = loja.clientes.get((escolhaCliente-1));
+        while (cliente == null) { 
+            int escolhaCliente = scan.nextInt();
+            scan.nextLine();
+            for (int i = 0; i < loja.clientes.size(); i++){
+                if ((escolhaCliente-1) == i){
+                    cliente = loja.clientes.get(i);
+                }
+            }
+            if (cliente == null){
+                System.out.println("Digite uma opção válida: ");
+            }
         }
 
         System.out.println("Escolha a data de vencimento: (dd/mm/aaaa)");
@@ -189,18 +230,21 @@ public class Main {
                 adicionarItemACompra(pedido);
             }else if (escolha == 2){
                 irPagamento(pedido);
+                break;
             }
         }
         
     }
 
     public static void adicionarItemACompra(Pedido pedido){
+        System.out.println("Digite o ID do item:");
         while (true){
-            System.out.println("Digite o ID do item:");
+            boolean ifExecutado = true;
             int id = scan.nextInt();
             scan.nextLine();    
             for (int i = 0; i<itensLoja.size(); i++){
                 if (id == itensLoja.get(i).getId()){
+                    ifExecutado = false;
                     if (pedido.itens.contains(itensLoja.get(i))){
                         System.out.println("Digite a quantidade para adicionar:");
                         int quantidade = scan.nextInt();
@@ -218,11 +262,15 @@ public class Main {
                         break;
                     }
                     
-                }else{
-                    System.out.println("Digite um ID válido");
                 }
             }
-        break;
+
+        if (ifExecutado){
+            System.out.println("Digite um ID válido: ");
+            }
+        if (ifExecutado == false){
+            break;
+        }
         }
     }
 
@@ -232,13 +280,19 @@ public class Main {
             Item item = pedido.itens.get(i);
             double valorDoItem = item.getValor(); 
             int quantidade = pedido.quantidadeDosItens.get(item);
-            totalCompra = totalCompra + (valorDoItem * quantidade);
+            if (quantidade > 10){
+                valorDoItem *= 0.95;
+            }
+            double totalItem = valorDoItem * quantidade;
+            totalCompra = totalCompra + totalItem;
         }
         System.out.println("Total da compra: "+totalCompra);
         pedido.setDataPagamento();
         pedido.setTotalCompra(totalCompra);
         pedidosTotais.add(pedido);
-        menu();
+        
+        Date.valoresDiaEMes.merge(LocalDate.now(), totalCompra, Double::sum);
+        VoltarMenu();
     }
 
     public static void CalculoPrecoTotal(){
@@ -304,6 +358,7 @@ public class Main {
     public static void listarDados(){
         for (int i = 0; i < dadosLojas.size(); i++){
             dadosLojas.get(i).apresentarse();
+            System.out.println("Gerente: " + dadosLojas.get(i).getGerente().getNome());
             for (int j = 0; j < dadosLojas.get(i).vendedores.size(); j++){
                 System.out.printf(" -");
                 dadosLojas.get(i).vendedores.get(j).apresentarse();

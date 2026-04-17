@@ -7,6 +7,7 @@ public class Lojas {
     public Endereco endereco;
     public ArrayList<Vendedor> vendedores = new ArrayList<>();
     public ArrayList<Clientes> clientes = new ArrayList<>();
+    private Gerente gerente;
 
     public Lojas() {
 
@@ -81,7 +82,16 @@ public class Lojas {
     }
 
     public void apresentarse() {
-        System.out.println("Loja: "+ this.nomeFantasia + " | CNPJ: " + this.cnpj + " | "+ this.endereco);
+        System.out.println("\nLoja: "+ this.nomeFantasia + " | CNPJ: " + this.cnpj + " | "+ this.endereco);
     }
+
+    public Gerente getGerente() {
+        return gerente;
+    }
+
+    public void setGerente(Gerente gerente) {
+        this.gerente = gerente;
+    }
+
 
 }
