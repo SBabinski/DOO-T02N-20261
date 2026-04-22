@@ -276,15 +276,17 @@ public class Main {
 
     public static void irPagamento(Pedido pedido){
         double totalCompra = 0;
+        int quantidadeTotal = 0;
         for (int i = 0; i < pedido.itens.size(); i++){
             Item item = pedido.itens.get(i);
             double valorDoItem = item.getValor(); 
-            int quantidade = pedido.quantidadeDosItens.get(item);
-            if (quantidade > 10){
-                valorDoItem *= 0.95;
-            }
-            double totalItem = valorDoItem * quantidade;
+            int quantidadeItem = pedido.quantidadeDosItens.get(item);
+            quantidadeTotal += pedido.quantidadeDosItens.get(item);
+            double totalItem = valorDoItem * quantidadeItem;
             totalCompra = totalCompra + totalItem;
+        }
+        if (quantidadeTotal > 10){
+            totalCompra *= 0.95;
         }
         System.out.println("Total da compra: "+totalCompra);
         pedido.setDataPagamento();
@@ -373,7 +375,7 @@ public class Main {
 
     public static void listarPedidos(){
         for (int i = 0; i < pedidosTotais.size(); i++){
-            System.out.println(pedidosTotais.get(i).gerarDescricaoVenda()+" | Loja: "+pedidosTotais.get(i).getLoja().getNomeFantasia()+" | Cliente: "+pedidosTotais.get(i).getCliente().getNome()+" | Data vencimento: "+pedidosTotais.get(i).getDataVencimentoReservaString()+" | Data pagamento: "+pedidosTotais.get(i).getDataPagamentoString());
+            System.out.println(pedidosTotais.get(i).gerarDescricaoVenda()+" | Loja: "+pedidosTotais.get(i).getLoja().getNomeFantasia()+" | Vendedor: "+pedidosTotais.get(i).getVendedor().getNome()+" | Cliente: "+pedidosTotais.get(i).getCliente().getNome()+" | Data vencimento: "+pedidosTotais.get(i).getDataVencimentoReservaString()+" | Data pagamento: "+pedidosTotais.get(i).getDataPagamentoString());
         }
         if (pedidosTotais.isEmpty()){
             System.out.println("Nenhum pedido registrado");

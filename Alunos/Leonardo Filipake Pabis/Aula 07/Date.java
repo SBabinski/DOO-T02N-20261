@@ -15,8 +15,7 @@ public class Date {
         } catch (Exception e) {
             System.out.println("Digite uma data válida: (dd/mm/aaaa");
             String novaData = Main.scan.nextLine().trim();
-            stringToDate(novaData);
-            return null;
+            return stringToDate(novaData);
         }
     }
 
