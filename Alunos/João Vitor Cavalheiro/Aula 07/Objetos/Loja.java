@@ -57,7 +57,8 @@ public class Loja extends Endereco {
         gerentes.add(gerente);
     }
 
-    public void apresentarLoja(){
+    @Override
+    public void apresentarLogradouro(){
 
         System.out.println("=======================");
         System.out.println("----------Loja----------");
@@ -67,7 +68,7 @@ public class Loja extends Endereco {
         System.out.println("=======================");
 
         System.err.println("Esta loja se localiza no:");
-        apresentarLogradouro();
+        super.apresentarLogradouro();
 
     }
 

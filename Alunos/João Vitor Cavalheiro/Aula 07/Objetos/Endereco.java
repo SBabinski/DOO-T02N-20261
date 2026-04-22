@@ -68,7 +68,7 @@ public class Endereco {
         System.out.println("----------Localização----------");
         System.out.println("Estado: "+getEstado());
         System.out.println("Cidade: "+getCidade());
-        System.out.println("Bairro"+ getBairro());
+        System.out.println("Bairro: "+ getBairro());
         System.out.println("Rua:"+getRua());
         System.out.println("Número:"+getNumero());
         System.out.println("Complemento:"+getComplemento());
