@@ -99,6 +99,8 @@ public class Principal {
         System.out.println("\n--- DEMONSTRAÇÃO INICIADA ---");
         System.out.println("\n FOORAM DEFINIDOS VALORES PARA OS LEITORES - ITENS E EMPRESTIMOS ");
 
+        listarPendentes();
+
     }
 
     private static void listarPendentes() {
