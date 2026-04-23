@@ -58,9 +58,9 @@ public class LojaGabrielinhaPrincipal {
 				matriz,
 				vendedor);
 
-		processoPedido.procesar(LocalDate.of(2026, 02, 10),
-				LocalDate.of(2026, 02, 12),
-				LocalDate.of(2026, 02, 15));
+		processoPedido.procesar(LocalDate.of(2026, 02, 10), 
+			LocalDate.of(2026, 02, 12), 
+			LocalDate.of(2026, 02, 15));
 
 		processoPedido2.procesar(LocalDate.of(2026, 02, 10),
 				LocalDate.of(2026, 02, 12),
