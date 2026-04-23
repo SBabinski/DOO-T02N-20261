@@ -1,4 +1,4 @@
-package aula4;
+package aula6;
 
 public class Main {
     public static void main(String[] args){
@@ -6,6 +6,7 @@ public class Main {
         Interface interfac = new Interface();
 
         interfac.progInterface();
-        // apagar return
+
+        return;
     }
 }

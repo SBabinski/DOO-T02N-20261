@@ -2,7 +2,7 @@ package aula3;
 
 import java.util.Scanner;
 
-public class Interface {
+public class Interface { // mudar nome, palavra reservada
 
     Scanner scan = new Scanner(System.in);
     Calculadora calculadora = new Calculadora();
