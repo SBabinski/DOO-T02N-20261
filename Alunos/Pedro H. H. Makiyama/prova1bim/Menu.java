@@ -1,4 +1,4 @@
-package prova1bim;
+package PROVA1BIM;
 import java.util.Scanner;
 
 public class Menu {

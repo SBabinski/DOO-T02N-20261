@@ -1,4 +1,4 @@
-package prova1bim;
+package PROVA1BIM;
 
 public class Main {
     public static void main(String[] args) {

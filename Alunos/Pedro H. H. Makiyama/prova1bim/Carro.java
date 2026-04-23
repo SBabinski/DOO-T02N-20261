@@ -1,4 +1,4 @@
-package prova1bim;
+package PROVA1BIM;
 
 public class Carro extends Veiculo {
 

@@ -1,4 +1,4 @@
-package prova1bim;
+package PROVA1BIM;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 

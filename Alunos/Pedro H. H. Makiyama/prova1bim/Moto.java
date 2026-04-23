@@ -1,5 +1,4 @@
-package prova1bim;
-
+package PROVA1BIM;
 public class Moto extends Veiculo{
 
     private double cilindrada;
