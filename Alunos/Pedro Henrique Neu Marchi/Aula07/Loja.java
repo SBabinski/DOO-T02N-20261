@@ -4,10 +4,7 @@ public class Loja {
     String razaoSocial;
     String cnpj;
 
-    String cidade;
-    String bairro;
-    String rua;
-    String numero;
+    Endereco endereco;
 
     Vendedor[] vendedores;
     Cliente[] clientes;
@@ -31,6 +28,8 @@ public class Loja {
     public void apresentarSe() {
         System.out.println("Loja: " + nomeFantasia);
         System.out.println("CNPJ: " + cnpj);
-        System.out.println("Endereço: " + cidade + ", " + bairro + ", " + rua + ", " + numero);
+        if (endereco != null) {
+            endereco.apresentarLogradouro();
+        }
     }
 }

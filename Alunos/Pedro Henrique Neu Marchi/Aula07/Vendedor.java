@@ -1,16 +1,10 @@
-public class Vendedor {
+public class Vendedor extends Pessoa {
 
-    String nome;
-    int idade;
     Loja loja;
-
-    String cidade;
-    String bairro;
-    String rua;
-
     double salarioBase;
-    double[] salariosRecebidos = {1500, 1600, 1700}; // exemplo
+    double[] salariosRecebidos = {1500.0, 1600.0, 1700.0};
 
+    @Override
     public void apresentarSe() {
         System.out.println("Nome: " + nome);
         System.out.println("Idade: " + idade);
@@ -19,11 +13,9 @@ public class Vendedor {
 
     public double calcularMedia() {
         double soma = 0;
-
         for (double salario : salariosRecebidos) {
             soma += salario;
         }
-
         return soma / salariosRecebidos.length;
     }
 

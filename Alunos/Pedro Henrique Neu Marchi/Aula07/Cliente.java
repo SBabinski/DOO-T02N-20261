@@ -1,14 +1,11 @@
-public class Cliente {
+public class Cliente extends Pessoa {
 
-    String nome;
-    int idade;
-
-    String cidade;
-    String bairro;
-    String rua;
-
+    @Override
     public void apresentarSe() {
         System.out.println("Nome: " + nome);
         System.out.println("Idade: " + idade);
+        if (endereco != null) {
+            endereco.apresentarLogradouro();
+        }
     }
 }
