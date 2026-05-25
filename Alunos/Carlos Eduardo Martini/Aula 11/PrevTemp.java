@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 
 public class PrevTemp {
@@ -19,21 +21,67 @@ public class PrevTemp {
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //DENTRO DA JANELA
-        janela.setLayout(new GridLayout(9, 1, 5, 5));
+        ImageIcon imagNuvem = new ImageIcon("fundopreto.jpg");
+        JLabel fundoTela = new JLabel(imagNuvem);//Imagem de fundo
+        janela.setContentPane(fundoTela);
+
+        fundoTela.setLayout(new GridLayout(9, 1, 5, 5));
         JLabel instrucao = new JLabel("Digite a cidade alvo:");
         JTextField campoCidede = new JTextField(15);//campo de digitação
         JButton botaoBuscar = new JButton("🔍");//botao para buscar
 
-        janela.add(instrucao);
-        janela.add(campoCidede);//adiciona dentro da janela
-        janela.add(botaoBuscar);
+        Font fonte = new Font("SansSerif", Font.BOLD, 22);
+        Font fonteTitulo = new Font("SansSerif", Font.BOLD, 30);
+        instrucao.setFont(fonteTitulo);
+        instrucao.setForeground(Color.WHITE);
 
-        janela.add(condicao);
-        janela.add(temperatura);
-        janela.add(tempMax);
-        janela.add(tempMin);//adiciona dentro da janela
-        janela.add(Umidade);
-        janela.add(Vento);
+        condicao.setFont(fonte);
+        condicao.setForeground(Color.WHITE);
+        temperatura.setFont(fonte);
+        temperatura.setForeground(Color.WHITE);//muda a cor e a fonte das letras
+        tempMax.setFont(fonte);
+        tempMax.setForeground(Color.WHITE);
+        tempMin.setFont(fonte);
+        tempMin.setForeground(Color.WHITE);
+        Umidade.setFont(fonte);
+        Umidade.setForeground(Color.WHITE);
+        Vento.setFont(fonte);
+        Vento.setForeground(Color.WHITE);
+
+        //janela.add(instrucao);
+        //janela.add(campoCidede);//adiciona dentro da janela
+        //janela.add(botaoBuscar);
+
+        fundoTela.setLayout(new GridBagLayout());
+
+        JPanel painelCentral = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.setColor(new Color(0, 0, 0, 150)); // Nossa cor preta transparente
+                g.fillRect(0, 0, getWidth(), getHeight()); // Pinta a bandeja toda
+                super.paintComponent(g);
+            }
+        };
+        painelCentral.setOpaque(false); // O comando mágico que impede o texto "fantasma"
+        painelCentral.setLayout(new GridLayout(9, 1, 10, 10));       
+
+        painelCentral.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
+        painelCentral.add(instrucao);
+
+        JPanel painelBusca = new JPanel(new BorderLayout(5, 0));
+        painelBusca.setOpaque(false); // Deixa transparente
+        painelBusca.add(campoCidede, BorderLayout.CENTER);
+        painelBusca.add(botaoBuscar, BorderLayout.EAST);
+        painelCentral.add(painelBusca);
+
+        painelCentral.add(condicao);
+        painelCentral.add(temperatura);
+        painelCentral.add(tempMax);
+        painelCentral.add(tempMin);//adiciona dentro da janela
+        painelCentral.add(Umidade);
+        painelCentral.add(Vento);
+
+        fundoTela.add(painelCentral);
 
         //FAZ A BUSCA
         botaoBuscar.addActionListener(e -> {
@@ -129,6 +177,23 @@ public class PrevTemp {
                 int fimCond = json.indexOf("\"", inicioCond); // Procura a aspa fechando em vez da vírgula
                 String valorCond = json.substring(inicioCond, fimCond);
                 condicao.setText("Condição: " + valorCond);
+
+                //Icones da condição
+                String textoCondicao = valorCond.toLowerCase(); 
+                String nomeArquivoIcone = "";
+
+                if (textoCondicao.contains("chuva")) {
+                    nomeArquivoIcone = "chuva.png";
+                } else if (textoCondicao.contains("nublado") || textoCondicao.contains("encoberto")) {
+                    nomeArquivoIcone = "nuvem.png";
+                } else {
+                    nomeArquivoIcone = "sol.png";
+                }
+
+                ImageIcon iconeOriginal = new ImageIcon(nomeArquivoIcone);
+                Image imagemNativa = iconeOriginal.getImage();
+                Image imagemRedimensionada = imagemNativa.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+                condicao.setIcon(new ImageIcon(imagemRedimensionada));
             }
             catch(Exception erro){
                 System.out.println("Temos um erro de conexão: "+ erro.getMessage());
