@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: system-ui, sans-serif;
+            background: #f4f6f9;
+            color: #1a1a2e;
+            padding: 2rem;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        header h1 { font-size: 1.5rem; font-weight: 600; }
+        header p  { color: #666; font-size: 0.9rem; }
+
+        form { display: flex; gap: 0.5rem; margin-bottom: 2rem; }
+        form input {
+            flex: 1;
+            padding: 0.6rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        form button {
+            padding: 0.6rem 1.2rem;
+            background: #4361ee;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        form button:hover { background: #3451d1; }
+
+        /* Condições atuais */
+        .current-card {
+            background: linear-gradient(135deg, #4361ee, #7209b7);
+            color: #fff;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .current-card .temp { font-size: 3.5rem; font-weight: 700; }
+        .current-card .details { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; opacity: 0.9; }
+        .current-card .location-name { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.3rem; }
+
+        /* Grid de previsão diária */
+        .forecast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .day-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .day-card .date  { font-size: 0.8rem; color: #666; margin-bottom: 0.4rem; }
+        .day-card .cond  { font-size: 0.8rem; color: #444; margin: 0.3rem 0; }
+        .day-card .tmax  { font-size: 1.2rem; font-weight: 700; color: #e63946; }
+        .day-card .tmin  { font-size: 0.9rem; color: #457b9d; }
+        .day-card .rain  { font-size: 0.75rem; color: #0077b6; margin-top: 0.4rem; }
+
+        /* Info de quota */
+        .quota-badge {
+            display: inline-block;
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.8rem;
+            color: #856404;
+            margin-bottom: 1rem;
+        }
+
+        h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; color: #333; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div>
+        <h1>🌤 Weather Dashboard</h1>
+        <p th:text="'Dados via Visual Crossing — ' + ${weather.resolvedAddress}">Localização</p>
+    </div>
+</header>
+
+<!-- Busca de localização -->
+<form th:action="@{/weather}" method="get">
+    <input type="text" name="location" th:value="${location}" placeholder="Ex: Cascavel,BR ou -24.95,-53.45">
+    <button type="submit">Buscar</button>
+</form>
+
+<!-- Badge de quota -->
+<div class="quota-badge"
+     th:text="'Custo desta query: ' + ${weather.queryCost} + ' records'">
+</div>
+
+<!-- Condições atuais -->
+<div class="current-card" th:if="${weather.currentConditions != null}">
+    <div class="temp"
+         th:text="${#numbers.formatDecimal(weather.currentConditions.temp, 1, 0)} + '°C'">
+    </div>
+    <div>
+        <div class="location-name" th:text="${weather.resolvedAddress}">Localização</div>
+        <div class="details">
+            <span th:text="'Sensação: ' + ${#numbers.formatDecimal(weather.currentConditions.feelslike, 1, 0)} + '°C'"></span>
+            <span th:text="'Umidade: '  + ${#numbers.formatDecimal(weather.currentConditions.humidity, 1, 0)} + '%'"></span>
+            <span th:text="'Vento: '    + ${#numbers.formatDecimal(weather.currentConditions.windspeed, 1, 1)} + ' km/h'"></span>
+            <span th:text="'UV: '       + ${weather.currentConditions.uvindex}"></span>
+            <span th:text="${weather.currentConditions.conditions}"></span>
+        </div>
+    </div>
+</div>
+
+<!-- Previsão 15 dias -->
+<h2>Previsão para os próximos dias</h2>
+<div class="forecast-grid">
+    <div class="day-card" th:each="day : ${weather.days}">
+        <div class="date"  th:text="${day.datetime}"></div>
+        <div class="tmax"  th:text="${#numbers.formatDecimal(day.tempmax, 1, 0)} + '°'"></div>
+        <div class="tmin"  th:text="${#numbers.formatDecimal(day.tempmin, 1, 0)} + '°'"></div>
+        <div class="cond"  th:text="${day.conditions}"></div>
+        <div class="rain"
+             th:if="${day.precipprob != null}"
+             th:text="'🌧 ' + ${#numbers.formatDecimal(day.precipprob, 1, 0)} + '%'">
+        </div>
+        <!-- Indica a fonte do dado -->
+        <div style="font-size:0.7rem; color:#aaa; margin-top:0.3rem"
+             th:text="${day.source}">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

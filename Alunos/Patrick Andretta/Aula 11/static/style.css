@@ -1,0 +1,171 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(160deg, #0d47a1 0%, #1976d2 45%, #42a5f5 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 16px 40px;
+}
+
+.container { width: 100%; max-width: 560px; }
+
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  letter-spacing: -0.5px;
+}
+
+/* ── Caixa de busca ── */
+.search-box { display: flex; gap: 10px; margin-bottom: 24px; }
+
+.search-box input {
+  flex: 1;
+  padding: 14px 20px;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  backdrop-filter: blur(4px);
+  transition: border-color 0.2s, background 0.2s;
+}
+.search-box input::placeholder { color: rgba(255, 255, 255, 0.6); }
+.search-box input:focus {
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.25);
+}
+.search-box input.error-shake { border-color: rgba(255, 100, 100, 0.9); }
+
+.search-box button {
+  padding: 14px 26px;
+  border-radius: 50px;
+  border: none;
+  background: white;
+  color: #1565c0;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.search-box button:hover  { transform: scale(1.04); box-shadow: 0 4px 14px rgba(0,0,0,0.2); }
+.search-box button:active { transform: scale(0.97); }
+
+/* ── Card base ── */
+.card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 20px;
+  color: white;
+  overflow: hidden;
+}
+
+/* ── Loading ── */
+#loading { display: none; padding: 44px 20px; text-align: center; }
+#loading.visible { display: block; }
+.spinner {
+  width: 50px; height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.25);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  margin: 0 auto 16px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+#loading p { font-size: 1rem; opacity: 0.8; }
+
+/* ── Erro ── */
+#errorBox {
+  display: none;
+  padding: 30px 24px;
+  text-align: center;
+  background: rgba(220, 53, 69, 0.18);
+  border-color: rgba(220, 53, 69, 0.38);
+}
+#errorBox.visible { display: block; }
+#errorBox .error-icon { font-size: 2.5rem; margin-bottom: 12px; }
+#errorBox p { font-size: 1rem; opacity: 0.92; line-height: 1.55; }
+
+/* ── Card de clima ── */
+#weatherCard { display: none; }
+#weatherCard.visible { display: block; }
+
+.weather-header {
+  padding: 28px 28px 22px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.city-name {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.resolved-address {
+  font-size: 0.82rem;
+  opacity: 0.7;
+  letter-spacing: 0.6px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.weather-emoji {
+  font-size: 5.5rem;
+  line-height: 1;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.temp-row { line-height: 1; }
+.temp-current { font-size: 4.8rem; font-weight: 800; }
+.temp-unit    { font-size: 2.5rem; font-weight: 300; vertical-align: super; }
+
+.conditions {
+  font-size: 1.1rem;
+  opacity: 0.88;
+  margin-top: 10px;
+}
+
+/* ── Grade de detalhes ── */
+.weather-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.detail-item {
+  background: rgba(0, 0, 0, 0.06);
+  padding: 20px 14px;
+  text-align: center;
+  transition: background 0.18s;
+}
+.detail-item:hover { background: rgba(255, 255, 255, 0.1); }
+
+.detail-icon  { font-size: 1.7rem; margin-bottom: 6px; }
+.detail-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
+  opacity: 0.62;
+  margin-bottom: 5px;
+}
+.detail-value { font-size: 1.08rem; font-weight: 600; }
+
+/* ── Responsivo ── */
+@media (max-width: 380px) {
+  h1 { font-size: 1.5rem; }
+  .temp-current { font-size: 3.8rem; }
+  .weather-emoji { font-size: 4rem; }
+  .weather-details { grid-template-columns: 1fr; }
+}

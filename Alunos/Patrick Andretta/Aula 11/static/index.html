@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Previsão do Tempo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🌤 Previsão do Tempo</h1>
+
+    <div class="search-box">
+      <input
+        type="text"
+        id="cityInput"
+        placeholder="Digite uma cidade..."
+        autocomplete="off"
+        autofocus
+      />
+      <button id="searchBtn">Buscar</button>
+    </div>
+
+    <div id="loading" class="card">
+      <div class="spinner"></div>
+      <p>Buscando clima...</p>
+    </div>
+
+    <div id="errorBox" class="card">
+      <div class="error-icon">⚠️</div>
+      <p id="errorMessage"></p>
+    </div>
+
+    <div id="weatherCard" class="card">
+      <div class="weather-header">
+        <h2 class="city-name" id="cityName"></h2>
+        <p class="resolved-address" id="resolvedAddress"></p>
+        <span class="weather-emoji" id="weatherEmoji"></span>
+        <div class="temp-row">
+          <span class="temp-current" id="currentTemp"></span><span class="temp-unit">°C</span>
+        </div>
+        <p class="conditions" id="conditions"></p>
+      </div>
+
+      <div class="weather-details">
+        <div class="detail-item">
+          <div class="detail-icon">🌡️</div>
+          <div class="detail-label">Máxima / Mínima</div>
+          <div class="detail-value" id="tempMaxMin">—</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">💧</div>
+          <div class="detail-label">Umidade</div>
+          <div class="detail-value" id="humidity">—</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">🌧️</div>
+          <div class="detail-label">Precipitação</div>
+          <div class="detail-value" id="precip">—</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">💨</div>
+          <div class="detail-label">Vento</div>
+          <div class="detail-value" id="wind">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
