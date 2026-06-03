@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.busca {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.busca input {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.busca input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.busca button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #e94560;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.busca button:hover {
+    background: #c73652;
+}
+
+.erro {
+    background: rgba(233, 69, 96, 0.3);
+    border: 1px solid #e94560;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 20px;
+    color: #ff6b6b;
+}
+
+.escondido {
+    display: none;
+}
+
+.resultado h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.temp-principal {
+    font-size: 5rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.temp-minmax {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.card-icone {
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+}
+
+.card-label {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-bottom: 4px;
+}
+
+.card-valor {
+    font-size: 1rem;
+    font-weight: bold;
+}

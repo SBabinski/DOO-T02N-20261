@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão do Tempo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🌤️ Previsão do Tempo</h1>
+
+        <div class="busca">
+            <input type="text" id="inputCidade" placeholder="Digite o nome da cidade..." />
+            <button onclick="buscarClima()">Buscar</button>
+        </div>
+
+        <div id="erro" class="erro escondido"></div>
+
+        <div id="resultado" class="resultado escondido">
+            <h2 id="cidade"></h2>
+
+            <div class="temp-principal">
+                <span id="tempAtual"></span>°C
+            </div>
+
+            <div class="temp-minmax">
+                <span>🔻 Mín: <strong id="tempMin"></strong>°C</span>
+                <span>🔺 Máx: <strong id="tempMax"></strong>°C</span>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icone">💧</div>
+                    <div class="card-label">Umidade</div>
+                    <div class="card-valor" id="umidade"></div>
+                </div>
+                <div class="card">
+                    <div class="card-icone">🌥️</div>
+                    <div class="card-label">Condição</div>
+                    <div class="card-valor" id="condicao"></div>
+                </div>
+                <div class="card">
+                    <div class="card-icone">🌧️</div>
+                    <div class="card-label">Precipitação</div>
+                    <div class="card-valor" id="precipitacao"></div>
+                </div>
+                <div class="card">
+                    <div class="card-icone">💨</div>
+                    <div class="card-label">Vento</div>
+                    <div class="card-valor" id="vento"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
