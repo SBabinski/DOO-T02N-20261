@@ -10,43 +10,40 @@ public class Registro {
     Scanner scan = new Scanner(System.in);
     DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    ArrayList<Venda> vendas = new ArrayList<>();
+    private ArrayList<Venda> vendas = new ArrayList<>();
     
     public void registrarVenda(){
 
-        int quant_flores;
-        double val_total; 
+        int quantflores;
+        double valtotal; 
         String dataS;
 
         System.out.println("\nDigite a data (dd/MM/yyy): ");
         dataS = scan.nextLine();
 
         System.out.println("\nDigite a quantidade de flores: ");
-        quant_flores = scan.nextInt();
+        quantflores = scan.nextInt();
 
         System.out.println("\nDigite o valor total da venda: ");
-        val_total = scan.nextDouble();
+        valtotal = scan.nextDouble();
 
         scan.nextLine();
         
-        Venda venda = new Venda(quant_flores, val_total, dataS);
+        Venda venda = new Venda(quantflores, valtotal, dataS);
 
         vendas.add(venda);
-
-        return;
     }
 
     public void listarVendas(){
 
         for (Venda vend : vendas){
 
-            // verificar null
+            if(!vend.equals(null)){
             
-            System.out.println("Quant. Flores: " + vend.getQuant_Flores() + " | Valor Total: " + vend.getVal_Total() +
-             " | Desconto: " + vend.getDesconto() + "%");
+                 System.out.println("Quant. Flores: " + vend.getQuantflores() + " | Valor Total: " + vend.getValtotal() +
+                                    " | Desconto: " + vend.getDesconto() + "%");
+            }
         }
-
-        return;
     }
 
     public void listarVendasDia(String diaS){
@@ -57,8 +54,8 @@ public class Registro {
 
             if (vend.getDate().equals(dia))
 
-                 System.out.println("Quant. Flores: " + vend.getQuant_Flores() + " | Valor Total: " + vend.getVal_Total() +
-                 " | Desconto: " + vend.getDesconto() + "%");
+                 System.out.println("Quant. Flores: " + vend.getQuantflores() + " | Valor Total: " + vend.getValtotal() +
+                                    " | Desconto: " + vend.getDesconto() + "%");
         }
     }
 
@@ -68,9 +65,12 @@ public class Registro {
 
             if (vend.getDate().getMonthValue() == mes && vend.getDate().getYear() == ano)
 
-                 System.out.println("Quant. Flores: " + vend.getQuant_Flores() + " | Valor Total: " + vend.getVal_Total() +
-                 " | Desconto: " + vend.getDesconto() + "%");
+                 System.out.println("Quant. Flores: " + vend.getQuantflores() + " | Valor Total: " + vend.getValtotal() +
+                                    " | Desconto: " + vend.getDesconto() + "%");
         }
+    }
 
+    public ArrayList<Venda> getVendas() {
+        return vendas;
     }
 }

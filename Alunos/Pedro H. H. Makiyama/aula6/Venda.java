@@ -6,20 +6,21 @@ import java.time.format.DateTimeFormatter;
 
 public class Venda {
 
-    int quant_flores;
-    double val_total, desconto;
+    private int quantflores;
+    private double valtotal;
+    private double desconto;
     LocalDate data;
     DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     Scanner scan = new Scanner(System.in);
 
-    public Venda(int quant_flores, double val_total, String dataS){
+    public Venda(int quantflores, double valtotal, String dataS){
 
-        this.quant_flores = quant_flores;
-        this.val_total = val_total;
+        this.quantflores = quantflores;
+        this.valtotal = valtotal;
         this.data = LocalDate.parse(dataS, parser);
 
-        if (quant_flores >= 10)
+        if (quantflores >= 10)
 
             this.desconto = 5;
         
@@ -28,23 +29,32 @@ public class Venda {
             this.desconto = 0;
     }
 
-    public int getQuant_Flores(){
-
-        return this.quant_flores;
+    public int getQuantflores(){
+        return quantflores;
     }
 
-    public double getVal_Total(){
-
-        return this.val_total;
+    public double getValtotal(){
+        return valtotal;
     }
 
     public double getDesconto(){
-
-        return this.desconto;
+        return desconto;
     }
 
     public LocalDate getDate(){
 
-        return this.data;
+        return data;
+    }
+
+    public void setQuantflores(int quantflores) {
+        this.quantflores = quantflores;
+    }
+
+    public void setValtotal(double valtotal) {
+        this.valtotal = valtotal;
+    }
+
+    public void setDesconto(double desconto) {
+        this.desconto = desconto;
     }
 }

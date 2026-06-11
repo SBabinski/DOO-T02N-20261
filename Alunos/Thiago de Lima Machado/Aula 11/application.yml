@@ -1,0 +1,19 @@
+visualcrossing:
+  api:
+    key: ${VC_API_KEY}
+    base-url: https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline
+    unit-group: metric
+    lang: pt
+    timeout-seconds: 10
+
+spring:
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.weather: DEBUG

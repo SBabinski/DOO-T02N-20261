@@ -4,23 +4,28 @@ import java.util.Scanner;
 
 public class Vendedor {
     
-    int idade;
-    double salarioBase, salarioRecebido;
-    String nome, loja, cidade, rua;
+    private int idade;
+    private double salariobase;
+    private double salariorecebido;
+    private String nome;
+    private String loja;
+    private String cidade;
+    private String bairro;
+    private String rua;
 
-    double teste = 100;
-
-    ArrayList<Double> salariosRecebidos = new ArrayList<>();
+    private ArrayList<Double> salariosRecebidos = new ArrayList<>();
     Scanner scan = new Scanner(System.in);
 
-    public Vendedor(String nome, int idade, String loja, String cidade, String rua, double salarioBase){
+    public Vendedor(String nome, int idade, String loja, String cidade, String bairro, String rua, double salariobase){
 
         this.nome = nome;
         this.idade = idade;
         this.loja = loja;
         this.cidade = cidade;
+        this.bairro = bairro;
         this.rua = rua;
-        this.salarioBase = salarioBase;
+        this.salariobase = salariobase;
+
         salariosRecebidos.add(1000.);
         salariosRecebidos.add(4500.);
         salariosRecebidos.add(2500.);
@@ -31,96 +36,113 @@ public class Vendedor {
         System.out.println("\nNome: " + this.nome + " - Idade: " + this.idade + " - Loja: " + this.loja);
     }
 
-    public void calcularMedia(){
+    public double calcularMedia(){
 
         int cont = 0;
         double somaSalariosRecebidos = 0;
 
-        for (Double salarioRecebido : salariosRecebidos){
+        for (Double salrec : salariosRecebidos){
 
-            somaSalariosRecebidos += salarioRecebido;
+            somaSalariosRecebidos += salrec;
+
             cont++;
         }
 
-        System.out.println("\nMédia dos salários do vendedor " + this.nome + ": " + somaSalariosRecebidos / cont);
+        return somaSalariosRecebidos / cont;
     }
 
     public void calcularBonus(){
 
-        System.out.println("\nBônus: " + this.salarioBase * .2);
-    }
-
-    public void alterarNome(){
-
-        String nome;
-
-        System.out.println("\nDigite o novo nome: ");
-        nome = scan.nextLine();
-
-        this.nome = nome;
-    }
-
-    public void alterarIdade(){
-
-        int idade;
-
-        System.out.println("\nDigite a nova idade: ");
-        idade = scan.nextInt();
-
-        scan.nextLine();
-
-        this.idade = idade;
-    }
-
-     public void alterarLoja(){
-
-        String loja;
-
-        System.out.println("\nDigite o nome da nova loja: ");
-        loja = scan.nextLine();
-
-        this.loja = loja;
-    }
-
-     public void alterarCidade(){
-
-        String cidade;
-
-        System.out.println("\nDigite o nome da nova cidade: ");
-        cidade = scan.nextLine();
-
-        this.cidade = cidade;
-    }
-
-    public void alterarRua(){
-
-        String rua;
-
-        System.out.println("\nDigite o nome da nova rua: ");
-        rua = scan.nextLine();
-
-        this.rua = rua;
-    }
-
-    public void alterarSalarioBase(){
-
-        double salarioBase;
-
-        System.out.println("\nDigite o novo salário base: ");
-        salarioBase = scan.nextDouble();
-
-        scan.nextLine();
-
-        this.salarioBase = salarioBase;
+        System.out.println("\nBônus: " + this.salariobase * .2);
     }
 
     public void adicionarSalarioRecebido(){
 
         System.out.println("\nDigite o valor do salário recebido: ");
-        this.salarioRecebido = scan.nextDouble();
+        salariorecebido = scan.nextDouble();
 
         scan.nextLine();
 
-        salariosRecebidos.add(this.salarioRecebido);
+        salariosRecebidos.add(salariorecebido);
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public double getSalarioBase() {
+        return salariobase;
+    }
+
+    public void setSalarioBase(double salariobase) {
+        this.salariobase = salariobase;
+    }
+
+    public double getSalarioRecebido() {
+        return salariorecebido;
+    }
+
+    public void setSalarioRecebido(double salariorecebido) {
+        this.salariorecebido = salariorecebido;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getLoja() {
+        return loja;
+    }
+
+    public void setLoja(String loja) {
+        this.loja = loja;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
+
+    public String getBairro(){
+        return bairro;
+    }
+
+    public void setBairro(String bairro){
+        this.bairro = bairro;
+    }
+
+    public double getSalariobase() {
+        return salariobase;
+    }
+
+    public void setSalariobase(double salariobase) {
+        this.salariobase = salariobase;
+    }
+
+    public double getSalariorecebido() {
+        return salariorecebido;
+    }
+
+    public void setSalariorecebido(double salariorecebido) {
+        this.salariorecebido = salariorecebido;
     }
 }   

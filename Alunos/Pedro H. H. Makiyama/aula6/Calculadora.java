@@ -9,31 +9,35 @@ public class Calculadora {
     public double Total(){
 
         int quant;
-        double prc_unit;
+        double prcunit;
 
         System.out.println("Digite a quantidade de itens: ");
         quant = scan.nextInt();
 
         System.out.println("Digite o preço de cada unidade: ");
-        prc_unit = scan.nextDouble();
+        prcunit = scan.nextDouble();
+
+        scan.nextLine();
 
         if (quant >= 10)
 
-            return quant * prc_unit * 0.95;
+            return quant * prcunit * 0.95;
 
-        return quant * prc_unit; 
+        return quant * prcunit; 
     }
 
     public double Troco(){
 
-        double val_cliente, total;
+        double valcliente, total;
 
         System.out.println("Digite o valor recebido do cliente: ");
-        val_cliente = scan.nextDouble();
+        valcliente = scan.nextDouble();
 
         System.out.println("Digite o valor total da compra: ");
         total = scan.nextDouble();
 
-        return val_cliente - total;
+        scan.nextLine();
+        
+        return valcliente - total;
     }
 }
