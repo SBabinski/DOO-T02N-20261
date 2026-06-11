@@ -5,18 +5,18 @@ public class Main {
     public static void main(String[] args) {
 
         //ATV1
-        List<Integer> numeros = Arrays.asList(12, 7, 25, 18, 30, 9, 26, 15);
-        List<Integer> pares = numeros.stream()
+        List<Integer> valores = Arrays.asList(8, 15, 23, 42, 50, 61, 74, 88);
+        List<Integer> pares = valores.stream()
                 .filter(n -> n % 2 == 0)
                 .collect(Collectors.toList());
         System.out.println(pares);
 
         //ATV2
         List<String> nomes = Arrays.asList("roberto", "josé", "caio", "vinicius");
-        List<String> nomesMaiusculos = nomes.stream()
+        List<String> maiusculos = nomes.stream()
                 .map(String::toUpperCase)
                 .collect(Collectors.toList());
-        System.out.println(nomesMaiusculos);
+        System.out.println(maiusculos);
 
         //ATV3
         List<String> palavras = Arrays.asList("se", "talvez", "hoje", "sábado", "se", "quarta", "sábado");
@@ -25,29 +25,29 @@ public class Main {
         System.out.println(contagem);
 
         //ATV4
-        List<Produto> produtos = Arrays.asList(
-                new Produto("Tulipa", 120.00),
-                new Produto("Rosa", 25.00),
-                new Produto("Girassol", 150.00),
-                new Produto("Lirio", 80.00)
+        List<Produto> estoque = Arrays.asList(
+                new Produto("Monitor 144hz", 1250.00),
+                new Produto("Mouse Gamer", 95.00),
+                new Produto("Teclado Mecanico", 350.00),
+                new Produto("Cabo USB-C", 45.00)
         );
-        List<Produto> caros = produtos.stream()
+        List<Produto> acimaCem = estoque.stream()
                 .filter(p -> p.preco > 100.0)
                 .collect(Collectors.toList());
-        caros.forEach(p -> System.out.println(p.nome + " - R$ " + p.preco));
+        acimaCem.forEach(p -> System.out.println(p.nome + " : R$ " + p.preco));
 
         //ATV5
-        double total = produtos.stream()
+        double totalEstoque = estoque.stream()
                 .mapToDouble(p -> p.preco)
                 .sum();
-        System.out.println("R$ " + total);
+        System.out.println("Soma total: R$ " + totalEstoque);
 
         //ATV6
         List<String> linguagens = Arrays.asList("Java", "Python", "C", "JavaScript", "Ruby");
-        List<String> ordenadas = linguagens.stream()
+        List<String> listaOrdenada = linguagens.stream()
                 .sorted(Comparator.comparingInt(String::length))
                 .collect(Collectors.toList());
-        System.out.println(ordenadas);
+        System.out.println(listaOrdenada);
     }
 }
 
