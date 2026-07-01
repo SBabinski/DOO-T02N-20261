@@ -1,0 +1,142 @@
+{
+  "nomeUsuario": "Kauan Bruno",
+  "favoritos": [
+    {
+      "id": 169,
+      "nome": "Breaking Bad",
+      "idioma": "English",
+      "generos": [
+        "Drama",
+        "Crime",
+        "Thriller"
+      ],
+      "nota": 9.2,
+      "estado": "Ended",
+      "dataEstreia": "2008-01-20",
+      "dataTermino": "2013-09-29",
+      "emissora": "AMC"
+    },
+    {
+      "id": 82,
+      "nome": "Game of Thrones",
+      "idioma": "English",
+      "generos": [
+        "Drama",
+        "Adventure",
+        "Fantasy"
+      ],
+      "nota": 9.3,
+      "estado": "Ended",
+      "dataEstreia": "2011-04-17",
+      "dataTermino": "2019-05-19",
+      "emissora": "HBO"
+    },
+    {
+      "id": 37779,
+      "nome": "Chernobyl",
+      "idioma": "English",
+      "generos": [
+        "Drama",
+        "History",
+        "Thriller"
+      ],
+      "nota": 9.1,
+      "estado": "Ended",
+      "dataEstreia": "2019-05-06",
+      "dataTermino": "2019-06-03",
+      "emissora": "HBO"
+    }
+  ],
+  "jaAssistidas": [
+    {
+      "id": 526,
+      "nome": "The Office",
+      "idioma": "English",
+      "generos": [
+        "Comedy"
+      ],
+      "nota": 8.9,
+      "estado": "Ended",
+      "dataEstreia": "2005-03-24",
+      "dataTermino": "2013-05-16",
+      "emissora": "NBC"
+    },
+    {
+      "id": 17861,
+      "nome": "Dark",
+      "idioma": "German",
+      "generos": [
+        "Drama",
+        "Crime",
+        "Science-Fiction",
+        "Thriller"
+      ],
+      "nota": 8.8,
+      "estado": "Ended",
+      "dataEstreia": "2017-12-01",
+      "dataTermino": "2020-06-27",
+      "emissora": "Netflix"
+    },
+    {
+      "id": 169,
+      "nome": "Breaking Bad",
+      "idioma": "English",
+      "generos": [
+        "Drama",
+        "Crime",
+        "Thriller"
+      ],
+      "nota": 9.2,
+      "estado": "Ended",
+      "dataEstreia": "2008-01-20",
+      "dataTermino": "2013-09-29",
+      "emissora": "AMC"
+    }
+  ],
+  "querAssistir": [
+    {
+      "id": 2993,
+      "nome": "Stranger Things",
+      "idioma": "English",
+      "generos": [
+        "Drama",
+        "Fantasy",
+        "Horror"
+      ],
+      "nota": 8.5,
+      "estado": "Running",
+      "dataEstreia": "2016-07-15",
+      "emissora": "Netflix"
+    },
+    {
+      "id": 30770,
+      "nome": "The Boys",
+      "idioma": "English",
+      "generos": [
+        "Action",
+        "Crime",
+        "Science-Fiction"
+      ],
+      "nota": 8.7,
+      "estado": "Ended",
+      "dataEstreia": "2019-07-26",
+      "dataTermino": "2024-06-13",
+      "emissora": "Amazon Prime Video"
+    },
+    {
+      "id": 618,
+      "nome": "Better Call Saul",
+      "idioma": "English",
+      "generos": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "nota": 9.0,
+      "estado": "Ended",
+      "dataEstreia": "2015-02-08",
+      "dataTermino": "2022-08-15",
+      "emissora": "AMC"
+    }
+  ]
+}
