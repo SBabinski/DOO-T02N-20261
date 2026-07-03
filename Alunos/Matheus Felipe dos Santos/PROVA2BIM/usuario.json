@@ -1,0 +1,8 @@
+{
+"nome":"Usuário",
+"email":"email@local",
+"pesquisadas":[{"nome":"Bleach","idioma":"Japanese","nota":7.9,"status":"Ended","estreia":"2004-10-05","imagemUrl":"-"},{"nome":"Naruto","idioma":"Japanese","nota":7.7,"status":"Ended","estreia":"2002-10-03","imagemUrl":"-"},{"nome":"Dragon Ball","idioma":"Japanese","nota":7.6,"status":"Ended","estreia":"1986-02-26","imagemUrl":"-"}],
+"favoritos":[{"nome":"Naruto","idioma":"Japanese","nota":7.7,"status":"Ended","estreia":"2002-10-03","imagemUrl":"https://static.tvmaze.com/uploads/images/original_untouched/3/9744.jpg"}],
+"assistidas":[{"nome":"Breaking Bad","idioma":"English","nota":9.2,"status":"Ended","estreia":"2008-01-20","imagemUrl":"https://static.tvmaze.com/uploads/images/original_untouched/501/1253519.jpg"}],
+"queroAssistir":[]
+}
