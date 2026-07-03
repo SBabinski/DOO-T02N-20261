@@ -295,6 +295,28 @@ public class TelaHome extends JFrame {
     
     private void pesquisarSerie() {
 
+    	String pesquisa = txtPesquisa.getText().trim();
+
+    	if (pesquisa.isBlank()) {
+
+    	    JOptionPane.showMessageDialog(
+    	            this,
+    	            "Digite o nome de uma série."
+    	    );
+
+    	    return;
+    	}
+
+    	if (!pesquisa.matches("[\\p{L}0-9\\s]+")) {
+
+    	    JOptionPane.showMessageDialog(
+    	            this,
+    	            "A pesquisa contém caracteres inválidos."
+    	    );
+
+    	    return;
+    	}
+    	
         try {
 
             serieAtual =

@@ -2,7 +2,8 @@ package provaDOO.view;
 
 import provaDOO.model.Serie;
 import provaDOO.model.Usuario;
-import provaDOO.services.TvMazeService;
+import provaDOO.services.TvMazeService;	
+import provaDOO.services.UsuarioService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +24,13 @@ public class TelaListaSeries extends JFrame {
     private JTable tabela;
 
     private javax.swing.table.DefaultTableModel model;
+    
+    private JComboBox<String> cbOrdenacao;
+
+    private JComboBox<String> cbDirecao;
+    
+    private final UsuarioService usuarioService =
+            new UsuarioService();
 
     public TelaListaSeries(
             Usuario usuario,
@@ -104,24 +112,37 @@ public class TelaListaSeries extends JFrame {
                 "Estreia"
         };
 
-        JComboBox<String> cbOrdenacao =
-                new JComboBox<>(ordenacoes);
+        cbOrdenacao = new JComboBox<>(ordenacoes);
 
-        cbOrdenacao.addActionListener(
-                e -> ordenar(
-                        cbOrdenacao
-                                .getSelectedItem()
-                                .toString()
+        String[] direcoes = {
+                "Crescente",
+                "Decrescente"
+        };
+        cbDirecao =
+                new JComboBox<>(direcoes);
+
+        cbOrdenacao.addActionListener(e ->
+                ordenar(
+                        cbOrdenacao.getSelectedItem().toString(),
+                        cbDirecao.getSelectedItem().toString()
                 )
         );
-
+        cbDirecao.addActionListener(e ->
+                ordenar(
+                        cbOrdenacao.getSelectedItem().toString(),
+                        cbDirecao.getSelectedItem().toString()
+                )
+        );
         painelOrdenacao.add(lblOrdenar);
         painelOrdenacao.add(cbOrdenacao);
+
+        painelOrdenacao.add(new JLabel("Ordem:"));
+
+        painelOrdenacao.add(cbDirecao);
 
         principal.add(
                 painelOrdenacao,
                 BorderLayout.BEFORE_FIRST_LINE);
-
         model =
                 new javax.swing.table.DefaultTableModel(
                         new Object[]{
@@ -131,30 +152,41 @@ public class TelaListaSeries extends JFrame {
                                 "Estreia"
                         },
                         0) {
-
                     @Override
                     public boolean isCellEditable(
                             int row,
                             int column) {
-
                         return false;
                     }
                 };
-
-        tabela =
-                new JTable(model);
-
+        tabela = new JTable(model);
         tabela.setRowHeight(35);
-
         tabela.setFont(
                 new Font("Segoe UI", Font.PLAIN, 16));
-
         tabela.getTableHeader()
                 .setFont(
                         new Font("Segoe UI", Font.BOLD, 16));
-
         JScrollPane scroll =
                 new JScrollPane(tabela);
+        
+        JPanel painelBotoes = new JPanel();
+
+        painelBotoes.setBackground(
+                new Color(18,18,18));
+
+        JButton btnRemover =
+                new JButton("Remover da Lista");
+
+        btnRemover.addActionListener(
+                e -> removerSerie()
+        );
+
+        painelBotoes.add(btnRemover);
+
+        principal.add(
+                painelBotoes,
+                BorderLayout.SOUTH
+        );
 
         principal.add(scroll, BorderLayout.CENTER);
 
@@ -162,25 +194,17 @@ public class TelaListaSeries extends JFrame {
     }
     
 	private void carregarSeries() {
-	
 	    try {
-	
 	        series.clear();
-	
 	        List<Long> ids =
 	                obterListaIds();
-	
 	        for (Long id : ids) {
-	
 	            series.add(
 	                    tvMazeService
 	                            .buscarSeriePorId(id));
 	        }
-	
 	        atualizarLista();
-	
 	    } catch (Exception ex) {
-	
 	        JOptionPane.showMessageDialog(
 	                this,
 	                ex.getMessage()
@@ -189,20 +213,13 @@ public class TelaListaSeries extends JFrame {
 	}
 	
 	private void atualizarLista() {
-
 	    model.setRowCount(0);
-
 	    for (Serie serie : series) {
-
 	        model.addRow(
 	                new Object[] {
-
 	                        serie.getNome(),
-
 	                        serie.getNota(),
-
 	                        serie.getStatus(),
-
 	                        serie.getEstreia()
 	                }
 	        );
@@ -228,62 +245,39 @@ public class TelaListaSeries extends JFrame {
     }
     
     private void ordenar(
-            String criterio) {
+            String criterio,
+            String direcao) {
 
         switch (criterio) {
-
             case "Nome":
-
                 series.sort(
-
                         (s1, s2) ->
-
                                 s1.getNome()
                                         .compareToIgnoreCase(
-
                                                 s2.getNome()
                                         )
                 );
-
                 break;
-
             case "Nota":
-
                 series.sort(
-
                         (s1, s2) ->
-
-                                Double.compare(
-
-                                        s2.getNota(),
-
-                                        s1.getNota()
-                                )
+	                        Double.compare(
+	                                s1.getNota(),
+	                                s2.getNota())
                 );
-
                 break;
-
             case "Status":
-
                 series.sort(
-
                         (s1, s2) ->
-
                                 s1.getStatus()
                                         .compareToIgnoreCase(
-
                                                 s2.getStatus()
                                         )
                 );
-
                 break;
-
             case "Estreia":
-
                 series.sort(
-
                         (s1, s2) ->
-
                                 s1.getEstreia()
                                         .compareTo(
 
@@ -293,8 +287,85 @@ public class TelaListaSeries extends JFrame {
 
                 break;
         }
+        if (direcao.equals("Decrescente")) {
+            java.util.Collections.reverse(series);
+        }
 
         atualizarLista();
+
+        atualizarLista();
+    }
+    
+    private void removerSerie() {
+
+        int linha = tabela.getSelectedRow();
+
+        if (linha == -1) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Selecione uma série."
+            );
+
+            return;
+        }
+
+        Serie serie = series.get(linha);
+
+        try {
+
+            switch (tipoLista) {
+
+                case "Favoritos":
+
+                    usuarioService.removerFavorito(
+                            usuario.getId(),
+                            serie.getId());
+
+                    usuario.getFavoritos()
+                            .remove(serie.getId());
+
+                    break;
+
+                case "Assistidas":
+
+                    usuarioService.removerAssistida(
+                            usuario.getId(),
+                            serie.getId());
+
+                    usuario.getAssistidas()
+                            .remove(serie.getId());
+
+                    break;
+
+                case "Deseja Assistir":
+
+                    usuarioService.removerDesejaAssistir(
+                            usuario.getId(),
+                            serie.getId());
+
+                    usuario.getDesejaAssistir()
+                            .remove(serie.getId());
+
+                    break;
+            }
+
+            series.remove(linha);
+
+            atualizarLista();
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Série removida com sucesso!"
+            );
+
+        } catch (Exception ex) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    ex.getMessage()
+            );
+        }
     }
     
 }

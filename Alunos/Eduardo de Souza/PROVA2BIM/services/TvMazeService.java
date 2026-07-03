@@ -183,9 +183,7 @@ public class TvMazeService {
                     json.get("ended").asText());
 
         } else {
-
-            serie.setTermino(
-                    "Em andamento");
+            serie.setTermino("Em andamento");
         }
 
         if(json.get("rating") != null &&

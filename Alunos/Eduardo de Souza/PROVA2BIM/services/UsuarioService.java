@@ -94,6 +94,42 @@ public class UsuarioService {
                     usuario);
         }
     }
+    
+    public void removerFavorito(
+            Long usuarioId,
+            Long serieId)
+            throws Exception {
+
+        Usuario usuario = buscarUsuario(usuarioId);
+
+        usuario.getFavoritos().remove(serieId);
+
+        repository.atualizarUsuario(usuario);
+    }
+
+    public void removerAssistida(
+            Long usuarioId,
+            Long serieId)
+            throws Exception {
+
+        Usuario usuario = buscarUsuario(usuarioId);
+
+        usuario.getAssistidas().remove(serieId);
+
+        repository.atualizarUsuario(usuario);
+    }
+
+    public void removerDesejaAssistir(
+            Long usuarioId,
+            Long serieId)
+            throws Exception {
+
+        Usuario usuario = buscarUsuario(usuarioId);
+
+        usuario.getDesejaAssistir().remove(serieId);
+
+        repository.atualizarUsuario(usuario);
+    }
 
     private Usuario buscarUsuario(
             Long usuarioId)

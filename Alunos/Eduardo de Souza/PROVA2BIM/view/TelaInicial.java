@@ -2,6 +2,9 @@ package provaDOO.view;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import provaDOO.services.UsuarioService;
+
 import java.awt.*;
 
 public class TelaInicial extends JFrame {
@@ -60,6 +63,21 @@ public class TelaInicial extends JFrame {
         JButton btnEntrar = criarBotao("Entrar",
                 new Color(40, 40, 40), Color.WHITE);
         btnEntrar.addActionListener(e -> {
+
+            UsuarioService usuarioService = new UsuarioService();
+
+            if (usuarioService.listarUsuarios().isEmpty()) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Nenhum usuário cadastrado.\nCadastre um usuário antes de entrar.",
+                        "Aviso",
+                        JOptionPane.WARNING_MESSAGE
+                );
+
+                return;
+            }
+
             TelaLogin telaLogin = new TelaLogin();
             telaLogin.setVisible(true);
             dispose();

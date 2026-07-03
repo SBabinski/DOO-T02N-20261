@@ -11,7 +11,6 @@ import java.util.List;
 public class UsuarioRepository {
 
     private static final String ARQUIVO = "usuarios.json";
-
     private final ObjectMapper mapper;
 
     public UsuarioRepository() {
@@ -19,24 +18,18 @@ public class UsuarioRepository {
     }
 
     public List<Usuario> listarUsuarios() {
-
         try {
-
             File arquivo = new File(ARQUIVO);
-
             if (!arquivo.exists()) {
                 return new ArrayList<>();
             }
-
             return mapper.readValue(
                     arquivo,
                     new TypeReference<List<Usuario>>() {}
             );
 
         } catch (Exception e) {
-
             e.printStackTrace();
-
             return new ArrayList<>();
         }
     }
@@ -80,7 +73,6 @@ public class UsuarioRepository {
 
         for (int i = 0;i < usuarios.size();i++) {
             if (usuarios.get(i).getId().equals(usuario.getId())) {
-
                 usuarios.set(i, usuario);
                 break;
             }
